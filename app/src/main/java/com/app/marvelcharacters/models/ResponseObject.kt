@@ -1,9 +1,10 @@
-package com.app.marvelcharacters
+package com.app.marvelcharacters.models
 
+import androidx.room.Entity
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-
+@Entity
 class ResponseObject : Serializable {
     @SerializedName("code")
     val code: String? = null
@@ -15,5 +16,5 @@ class ResponseObject : Serializable {
     val copyRight: String? = null
 
     @SerializedName("data")
-    val data: DataModel? = null
+     val data: DataModel? = null
 }

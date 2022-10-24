@@ -4,10 +4,14 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Mohamad/Desktop/Newfolder/MarvelCharacters/app/src/main/res/drawable-v24/rounded_corners.xml" value="0.131" />
+        <entry key="..\:/Users/Mohamad/Desktop/Newfolder/MarvelCharacters/app/src/main/res/drawable/rounded_corners.xml" value="0.1765" />
+        <entry key="..\:/Users/Mohamad/Desktop/Newfolder/MarvelCharacters/app/src/main/res/drawable/rounded_corners_black.xml" value="0.131" />
+        <entry key="..\:/Users/Mohamad/Desktop/Newfolder/MarvelCharacters/app/src/main/res/drawable/shadow_black.xml" value="0.131" />
         <entry key="..\:/Users/Mohamad/Desktop/Newfolder/MarvelCharacters/app/src/main/res/layout/activity_character.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Mohamad/Desktop/Newfolder/MarvelCharacters/app/src/main/res/layout/activity_main.xml" value="0.17592592592592593" />
+        <entry key="..\:/Users/Mohamad/Desktop/Newfolder/MarvelCharacters/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/Mohamad/Desktop/Newfolder/MarvelCharacters/app/src/main/res/layout/character_item_layout.xml" value="0.12" />
-        <entry key="..\:/Users/Mohamad/Desktop/Newfolder/MarvelCharacters/app/src/main/res/layout/list_item_layout.xml" value="0.11302083333333333" />
+        <entry key="..\:/Users/Mohamad/Desktop/Newfolder/MarvelCharacters/app/src/main/res/layout/character_list_item.xml" value="0.264" />
+        <entry key="..\:/Users/Mohamad/Desktop/Newfolder/MarvelCharacters/app/src/main/res/layout/list_item_layout.xml" value="0.2" />
       </map>
     </option>
   </component>

@@ -6,7 +6,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:background="@color/fade_black"
+    tools:context=".view.MainActivity">
 
 
     <LinearLayout
@@ -18,15 +19,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:src="@drawable/marvel_icon"
+            android:layout_margin="20dp"
+            />
+
         <TextView
             android:id="@+id/text_status"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:textSize="20sp"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:text="@string/choose_your_hero"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="loading" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ListView
             android:id="@+id/list_view"
@@ -44,6 +55,7 @@
         android:id="@+id/progress_bar"
         android:layout_width="150dp"
         android:layout_height="150dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

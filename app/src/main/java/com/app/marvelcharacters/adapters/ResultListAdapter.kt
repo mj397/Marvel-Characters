@@ -1,4 +1,4 @@
-package com.app.marvelcharacters
+package com.app.marvelcharacters.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
+import com.app.marvelcharacters.models.Items
+import com.app.marvelcharacters.R
 import java.io.Serializable
 
 class ResultListAdapter(

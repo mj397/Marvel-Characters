@@ -1,4 +1,4 @@
-package com.app.marvelcharacters
+package com.app.marvelcharacters.models
 
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException

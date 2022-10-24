@@ -1,4 +1,4 @@
-package com.app.marvelcharacters
+package com.app.marvelcharacters.view
 
 import android.os.Bundle
 import android.view.View
@@ -6,6 +6,10 @@ import android.widget.ImageView
 import android.widget.ListView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.app.marvelcharacters.models.Constants
+import com.app.marvelcharacters.R
+import com.app.marvelcharacters.adapters.ResultListAdapter
+import com.app.marvelcharacters.models.Results
 import com.bumptech.glide.Glide
 
 class CharacterActivity : AppCompatActivity() {
@@ -21,6 +25,9 @@ class CharacterActivity : AppCompatActivity() {
     private var listView2: ListView? = null
     private var listView3: ListView? = null
     private var result: Results? = null
+    private var tvDesc: TextView? = null
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_character)
@@ -31,6 +38,7 @@ class CharacterActivity : AppCompatActivity() {
         tvHeader1 = findViewById(R.id.header_text1)
         tvHeader2 = findViewById(R.id.header_text2)
         tvHeader3 = findViewById(R.id.header_text3)
+        tvDesc = findViewById(R.id.desc_text)
 
         //comics
         listView = findViewById(R.id.list_view)
@@ -91,5 +99,6 @@ class CharacterActivity : AppCompatActivity() {
                 tvHeader3!!.visibility = View.VISIBLE
                 listView3!!.adapter = result!!.series?.items?.let { ResultListAdapter(it, this, "series") }
             }
+            tvDesc?.text = result?.description
         }
 }

@@ -1,4 +1,4 @@
-package com.app.marvelcharacters
+package com.app.marvelcharacters.remote
 
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit

@@ -6,6 +6,7 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.text.TextUtils
+import com.app.marvelcharacters.models.Results
 import org.apache.commons.lang3.SerializationUtils
 import java.sql.DriverManager.println
 
