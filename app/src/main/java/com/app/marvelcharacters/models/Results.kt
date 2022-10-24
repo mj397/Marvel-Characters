@@ -1,38 +1,44 @@
 package com.app.marvelcharacters.models
 
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-@Entity
+@Entity (tableName = "characters")
 class Results : Serializable {
+
+
+    @PrimaryKey(autoGenerate = true)
+    var idPrimary: Long? = null
+
     @SerializedName("resourceURI")
-    val resourceURI: String? = null
+    var resourceURI: String? = null
 
     @SerializedName("id")
-    val id: String? = null
+    var characterId: String? = null
 
     @SerializedName("title")
-    val title: String? = null
+    var title: String? = null
 
     @SerializedName("description")
-    val description: String? = null
+    var description: String? = null
 
     @SerializedName("name")
-    val name: String? = null
+    var name: String? = null
 
     @SerializedName("thumbnail")
-    val thumbnail: Thumbnail? = null
+    var thumbnail: Thumbnail? = null
 
     @SerializedName("comics")
-    val comics: Extras? = null
+    var comics: Extras ? = null
 
     @SerializedName("series")
-    val series: Extras? = null
+    var series: Extras? = null
 
     @SerializedName("stories")
-    val stories: Extras? = null
+    var stories: Extras? = null
 
     @SerializedName("events")
-    val events: Extras? = null
+    var events: Extras? = null
 }

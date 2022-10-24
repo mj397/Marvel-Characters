@@ -1,13 +1,41 @@
 package com.app.marvelcharacters.models
 
-import androidx.room.PrimaryKey
-import androidx.room.ColumnInfo
-import androidx.room.Entity
+import android.content.Context
+import androidx.room.*
 
-//@Entity(tableName = "characters")
-//data class RoomDb(
-//    @PrimaryKey public val id: Int,
-//
-//    @ColumnInfo(name = "character")
-//    public val character: Character
-//)
+@Database(entities = [Results::class], version = 1)
+@TypeConverters(ObjectConverter::class, ObjectConverter1::class, ObjectConverter2::class)
+abstract class RoomDb : RoomDatabase() {
+
+    abstract fun characterDao(): CharacterDao
+
+    companion object {
+
+        @Volatile
+        private var INSTANCE: RoomDb? = null
+
+        fun getDatabase(context: Context): RoomDb {
+            // if the INSTANCE is not null, then return it,
+            // if it is, then create the database
+            if (INSTANCE == null) {
+                synchronized(this) {
+                    // Pass the database to the INSTANCE
+                    INSTANCE = buildDatabase(context)
+                }
+            }
+            // Return database.
+            return INSTANCE!!
+        }
+
+        private fun buildDatabase(context: Context): RoomDb {
+            return Room.databaseBuilder(
+                context.applicationContext,
+                RoomDb::class.java,
+                "notes_database"
+            )
+                .build()
+        }
+    }
+
+}
+

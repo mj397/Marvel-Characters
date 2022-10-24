@@ -44,7 +44,7 @@ class ListViewAdapter(
         val result = results?.get(i)
         val path = Constants().getImagePath(result?.thumbnail?.path.orEmpty(), result?.thumbnail?.extension.orEmpty())
         println("NameValue: " + result?.name)
-        println("IdValue: " + result?.id)
+        println("IdValue: " + result?.characterId)
         println("ImagePath: $path")
         mContext?.applicationContext?.let {
             if (imageView != null) {
@@ -57,7 +57,7 @@ class ListViewAdapter(
             tvName.text = result?.name
         }
         if (tvId != null) {
-            tvId.text = result?.id.toString()
+            tvId.text = result?.characterId.toString()
         }
         view1?.setOnClickListener {
             val results = results?.get(i)

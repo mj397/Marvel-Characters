@@ -1,5 +1,6 @@
 package com.app.marvelcharacters.viewmodels
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,9 +11,9 @@ class MainActivityViewModel : ViewModel() {
     private val characterRepo: CharacterRepo?
 
 
-    fun searchCharacterApi() {
+    fun searchCharacterApi(context: Context) {
         Log.d(TAG, "SearchValue " + true)
-        characterRepo?.searchCharactersApi()
+        characterRepo?.searchCharactersApi(context)
     }
 
     companion object {

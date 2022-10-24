@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity(), Serializable {
 
         viewModel = ViewModelProvider(this)[MainActivityViewModel::class.java]
 
-        viewModel?.searchCharacterApi()
+        viewModel?.searchCharacterApi(mContext as MainActivity)
         observeChange()
 
 
@@ -104,6 +104,7 @@ class MainActivity : AppCompatActivity(), Serializable {
                 Log.d(TAG, "IsValid " + true)
                 if (results != null) {
                     listView?.adapter = ListViewAdapter(results, mContext)
+                    Log.d(TAG,  "ListSize "+ results.size)
                     for (result in results) {
                         Log.d(TAG,  "ResultName "+ result.name!!)
                     }

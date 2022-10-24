@@ -70,7 +70,7 @@ class CharacterActivity : AppCompatActivity() {
                 )
                 .into(imageView!!)
             tvName!!.text = result!!.name
-            tvId!!.text = result!!.id
+            tvId!!.text = result!!.characterId
             listView!!.visibility = View.GONE
             listView1!!.visibility = View.GONE
             listView2!!.visibility = View.GONE

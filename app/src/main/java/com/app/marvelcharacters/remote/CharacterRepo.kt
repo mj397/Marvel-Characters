@@ -1,13 +1,14 @@
 package com.app.marvelcharacters.remote
 
+import android.content.Context
 import android.util.Log
 import com.app.marvelcharacters.viewmodels.MainActivityViewModel
 
 class CharacterRepo {
      val client: CharacterAPIClient?
-    fun searchCharactersApi() {
+    fun searchCharactersApi(context: Context) {
         Log.d("CharacterRepo", "SearchValue " +2)
-        client?.searchCharacters()
+        client?.searchCharacters(context)
     }
 
     companion object {

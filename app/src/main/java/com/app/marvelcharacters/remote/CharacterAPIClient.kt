@@ -3,14 +3,9 @@ package com.app.marvelcharacters.remote
 import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import androidx.work.Worker
-import androidx.work.WorkerParameters
-import com.app.marvelcharacters.models.AppExecutors
-import com.app.marvelcharacters.models.Constants
-import com.app.marvelcharacters.models.ResponseObject
-import com.app.marvelcharacters.models.Results
+import com.app.marvelcharacters.models.*
 import com.app.marvelcharacters.remote.RestClient.client
-import com.app.marvelcharacters.viewmodels.MainActivityViewModel
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Response
 import java.io.IOException
@@ -21,11 +16,14 @@ import java.util.concurrent.TimeUnit
 class CharacterAPIClient {
     val charactersList: MutableLiveData<ArrayList<Results>>
     val TAG: String = "CharacterAPIClient"
+    var db: RoomDb? = null
+    var type: Int? = 0
 
 
     private var retrieveCharactersRunnable: RetrieveCharactersRunnable? = null
-    fun searchCharacters() {
-        Log.d(TAG, "SearchValue " +1)
+    fun searchCharacters(context: Context) {
+        db = RoomDb.getDatabase(context)
+        Log.d(TAG, "SearchValue " + 1)
         if (retrieveCharactersRunnable != null) {
             retrieveCharactersRunnable = null
         }
@@ -39,10 +37,10 @@ class CharacterAPIClient {
     private inner class RetrieveCharactersRunnable : Runnable {
         private var cancelRequest = false
         override fun run() {
-            Log.d(TAG, "SearchValue " +2)
+            Log.d(TAG, "SearchValue " + 2)
             val timestamp = Timestamp(1).toString()
             try {
-                Log.d(TAG, "SearchValue " +3)
+                Log.d(TAG, "SearchValue " + 3)
                 val response: Response<*> = getCharacters(
                     timestamp, Constants().generateHashCode(
                         timestamp, Constants.PRIVATE_KEY, Constants.PUBLIC_KEY
@@ -54,21 +52,28 @@ class CharacterAPIClient {
                 if (response.code() == 200) {
                     //list available
                     val list = ArrayList((response.body() as ResponseObject?)!!.data!!.results)
-                    Log.d(TAG,  "ResultSize "+ list.size)
+                    Log.d(TAG, "ResultSize " + list.size)
                     charactersList.postValue(list)
+                    cacheCharacters(list)
+
                 } else {
+                    type = 1
                     val error = response.errorBody().toString()
                     Log.d(TAG, "ErrorMessage $error")
                     charactersList.postValue(null)
+                    geCharacters()
                 }
             } catch (e: IOException) {
+                type = 1
                 Log.d(TAG, "ErrorException " + e.printStackTrace())
                 Log.d(TAG, "ErrorException " + e.message)
                 Log.d(TAG, "ErrorException " + e.stackTraceToString())
                 Log.d(TAG, "ErrorException " + e.cause.toString())
                 e.printStackTrace()
                 charactersList.postValue(null)
+                geCharacters()
             }
+
             if (cancelRequest) {
                 return
             }
@@ -106,7 +111,7 @@ class CharacterAPIClient {
         charactersList = MutableLiveData()
     }
 
-//
+
 //        class CacheWorker(context: Context, workerParams: WorkerParameters) :
 //        Worker(context, workerParams) {
 //        /**
@@ -152,9 +157,29 @@ class CharacterAPIClient {
 //            private const val TAG = "CacheWorkerClass"
 //        }
 //    }
-//
-//    companion object {
-//        private var instance: CharactersRepo? = null
-//    }
+
+
+    private fun geCharacters() {
+
+        val thread = Thread {
+
+           val results: List<Results> = db?.characterDao()?.charactersList()!!
+            charactersList.postValue(results as ArrayList<Results>?)
+            Log.d(TAG, "ArrayListSize " + results.size)
+        }
+        thread.start()
+    }
+
+    private fun cacheCharacters(results: ArrayList<Results>) {
+        for (result in results) {
+            if (db?.characterDao()?.count(result.characterId) == 0)
+            {
+                db!!.characterDao().insert(result)
+                Log.d(TAG, "AddedCharacter " + result.name)
+            }
+
+        }
+    }
+
 
 }
